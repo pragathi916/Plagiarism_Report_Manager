@@ -1,0 +1,208 @@
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+    background-color: #39b3e6;
+}
+
+.main-content {
+    flex: 1;
+}
+
+
+.nav{
+    background-color: white;   
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+
+#logo{
+    height: 40px;
+    background-color: white;
+    margin-top: 30px;
+    margin-left: 20px;
+
+}
+
+#head{
+    font-family: alegreyasansM;
+    font-size: 36px;
+    font-weight: bolder;
+    color: #39b3e6;
+    margin-right: 300px;
+}
+.mform {
+    flex: 1;
+    margin: 30px;
+    border: 5px solid white;
+    border-radius: 20px;
+    padding: 25px;
+    color: rgb(255, 255, 255);
+    font-family: alegreyasansM;
+    font-size: 25px;
+}
+
+input{
+    height: 27px;
+    width: 270px;
+    border:none;
+    border-radius: 3px;
+   
+}
+.plag{
+  border:1px solid white;
+  border-radius: 3px;
+  padding-left: 10px;
+  padding-bottom: 10px;
+  font-size:20px ;
+}
+.first{
+    margin-left: 10px;
+}
+
+.submit-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.submit-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;  
+    font-family: 'Arial', sans-serif; 
+    cursor: pointer;
+    background-color: #ffffff;
+    color: #39b3e6;
+    border: none;
+    border-radius: 5px;
+}
+
+.submit-button:hover {
+    background-color: #a4d1ef;
+}
+
+
+
+.login-selection, .login-form {
+    margin: 50px auto;
+    padding: 20px;
+    max-width: 300px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    text-align: center;
+}
+
+.login-selection button, .login-form input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #333;
+    color: #fff;
+    cursor: pointer;
+}
+
+.login-selection button:hover, .login-form input[type="submit"]:hover {
+    background-color: #555;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.custom-button, .logout-button {
+    margin-right: 20px;
+    padding: 5px 10px;
+    font-size: 16px;
+    font-weight: bold;
+    font-family: 'Arial', sans-serif;
+    cursor: pointer;
+    background-color: #ffffff;
+    color: #39b3e6;
+    border: none;
+    border-radius: 5px;
+    height: 100px;
+    line-height: 1;
+}
+
+.custom-button:hover, .logout-button:hover {
+    background-color: #85c4ee;
+}
+footer {
+    background-color: white;
+    color: #39b3e6;
+    text-align: center;
+    padding: 10px 0;
+    position: relative;
+    
+    width: 100%;
+    font-family: 'Arial', sans-serif;
+    font-weight: bold;
+    border-top: 2px solid #39b3e6;
+}
+.card-slider-container {
+    display: flex;
+    justify-content: center; /* Center the cards horizontally */
+    margin: 20px;
+}
+
+.card-slider {
+    display: flex;
+    width: 100%;
+    max-width: 1200px; /* Limit maximum width of the card slider */
+    overflow-x: auto; /* Enable horizontal scrolling */
+}
+
+.card {
+    flex: 0 0 50%; /* Each card takes up 50% of the container width */
+    box-sizing: border-box;
+    padding: 20px;
+    margin: 5px;
+    background-color: white;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.card h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.card p {
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+.card button {
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    background-color: #39b3e6;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+.card button:hover {
+    background-color: #a4d1ef;
+}

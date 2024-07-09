@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faculty Login</title>
+    <link rel="stylesheet" href="style.css">
+    <script>
+        function returnBack() {
+            window.location.href = "login.html";
+        }
+    </script>
+</head>
+<body>
+    <div class="nav">
+        <img id="logo" src="nitte.png" alt="Logo">
+        <p id="head">Academic Integrity Portal</p>
+        <button class="logout-button" type="button" onclick="returnBack()">Return Back</button>
+    </div>
+    <div class="login-form">
+        <h2>Faculty Login</h2>
+        <form action="facultylogin.php" method="POST">
+            <input type="hidden" name="usertype" value="faculty"> 
+            <div class="form-group">
+                <label for="faculty-username">Username:</label>
+                <input type="text" id="faculty-username" name="username" required>
+            </div>
+            <div class="form-group">
+                <label for="faculty-password">Password:</label>
+                <input type="password" id="faculty-password" name="password" required>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Login">
+            </div>
+        </form>
+    </div>
+</body>
+</html>
