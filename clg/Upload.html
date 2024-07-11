@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Upload Document</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .upload-card {
+            display: flex;
+            flex-direction: column;
+            align-items: left; /* Align items to the left */
+            justify-content: center;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            padding: 50px;
+            width: 350px;
+            margin: 20px auto;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: left;
+        }
+
+        .content {
+            font-weight: bold;
+            font-size: 25px;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start; /* Align form contents to the left */
+            text-align: left;
+        }
+
+        form label {
+            margin-bottom: 5px; /* Add a little space between labels */
+            font-weight: bold; /* Optionally make labels bold */
+        }
+
+        .sb {
+            margin: 10px;
+            padding: 5px 10px;
+            border: none;
+            background-color: white;
+            color: #39b3e6;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .sb:hover {
+            background-color: #0056b3;
+        }
+    </style>
+    <script>
+        function returnBack() {
+            window.location.href = "libhome.html";
+        }
+
+        function checkFileCount() {
+            var maxFiles = parseInt(document.getElementById("max_files").value);
+            var fileCount = document.getElementById("document").files.length;
+
+            if (fileCount !== maxFiles) {
+                alert("Please upload exactly " + maxFiles + " files.");
+                return false;
+            }
+            return true;
+        }
+    </script>
+</head>
+<body>
+    <div class="main-content">
+        <div class="nav">
+            <img id="logo" src="nitte.png" alt="Logo">
+            <p id="head">Academic Integrity Portal</p>
+            <button class="logout-button" onclick="returnBack()">Return Home</button>
+        </div>
+        <div class="content">
+            <h2>Upload Generated Plagiarism Check Reports</h2>
+        </div>
+        <div class="upload-card">
+            <form action="libupload.php" method="post" enctype="multipart/form-data" onsubmit="return checkFileCount();">
+                <label for="recipient_name">UserName:</label>
+                <input type="text" id="recipient_name" name="recipient_name" required><br><br>
+                
+                <label for="recipient_email">Email:</label>
+                <input type="email" id="recipient_email" name="recipient_email" required><br><br>
+
+                <label for="max_files">Maximum Files:</label>
+                <input type="number" id="max_files" name="max_files" value=" " min="1" required placeholder="Choose number of files to upload"><br><br>
+
+                <label for="document">Select Documents to Upload:</label>
+                <input type="file" id="document" name="document[]" required multiple><br><br>
+
+                <input type="submit" value="Upload" class="sb">
+            </form>
+        </div>
+    </div>
+    <footer>
+        <p>Copyright &copy; 2024<br> NMAM Institute Of Technology, Nitte</p>
+    </footer>
+</body>
+</html>

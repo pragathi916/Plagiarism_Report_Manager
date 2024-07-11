@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login</title>
+    <link rel="stylesheet" href="style.css">
+    <script>
+        function returnBack() {
+            window.location.href = "login.html";
+        }
+    </script>
+</head>
+<body>
+    <div class="nav">
+        <img id="logo" src="nitte.png">
+        <p id="head">Academic Integrity Portal</p>
+        <button class="logout-button" onclick="returnBack()">Return Back</button>
+    </div>
+    <div class="main-content">
+    <div class="login-form">
+        <h2>Admin Login</h2>
+        <form action="adminlogin.php" method="POST">
+            <div class="form-group">
+                <label for="admin-username">Username:</label>
+                <input type="text" id="admin-username" name="username" required>
+            </div>
+            <div class="form-group">
+                <label for="admin-password">Password:</label>
+                <input type="password" id="admin-password" name="password" required>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Login">
+            </div>
+        </form>
+    </div>
+    </div>
+    <footer>
+        <p>Copyright &copy; 2024</p>
+        NMAM Institute Of Technology, Nitte
+    </footer>
+</body>
+</html>
+

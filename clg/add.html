@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <link rel="stylesheet" href="style.css">
+    <script>
+        function returnBack() {
+            window.location.href = "admin.html";
+        }
+    </script>
+</head>
+<body>
+    <div class="main-content">
+        <div class="nav">
+            <img id="logo" src="nitte.png" alt="Logo">
+            <p id="head">Academic Integrity Portal</p>
+            <button class="logout-button" onclick="returnBack()">Return Home</button>
+        </div>
+
+        <div class="card-slider-container">
+            <div class="card-slider">
+                <div class="card">
+                    <h2>Add Librarian</h2>
+                    <p>Add Librarian to database</p>
+                    <button onclick="location.href='addlib.html'">ADD</button>
+                </div>
+                <div class="card">
+                    <h2>Add Faculty</h2>
+                    <p>Add Faculties to database</p>
+                    <button onclick="location.href='addfaculty.html'">ADD</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>Copyright &copy; 2024 NMAM Institute Of Technology, Nitte</p>
+    </footer>
+
+    <script src="scriptt.js"></script>
+</body>
+</html>

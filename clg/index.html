@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <script>
+        function returnBack() {
+            window.location.href = "home.html";
+        }
+
+        function generateFileInputs() {
+            const num = document.getElementById('num').value;
+            const container = document.getElementById('fileInputsContainer');
+            container.innerHTML = '';
+            for (let i = 0; i < num; i++) {
+                const input = document.createElement('input');
+                input.type = 'file';
+                input.name = `file[]`; 
+                input.required = true;
+                container.appendChild(input);
+                container.appendChild(document.createElement('br'));
+            }
+        }
+
+        function validateNumberInput(event) {
+            if (event.target.value < 0) {
+                event.target.value = 0;
+            } else if (event.target.value > 3) {
+                event.target.value = 3;
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.querySelector('form');
+            form.addEventListener('submit', handleSubmit);
+        });
+    </script>
+    
+</head>
+<body>
+
+    <div class="main-content">
+        <div class="nav">
+            <img id="logo" src="nitte.png">
+            <p id="head">Academic Integrity Portal</p>
+            <button class="logout-button" onclick="returnBack()">Return Home</button>
+        </div>
+
+        <div class="mform">
+            <form action="upload.php" method="POST" enctype="multipart/form-data">
+                <div class="first">Faculty : <input type="text" name="username" id="faculty" placeholder="Enter your username" required> </div>
+                <br>
+                <div class="first">Department : 
+                    <select name="department" id="department" required>
+                        <option value="" disabled selected>Select your department</option>
+                        <option value="Artificial Intelligence & Data Science">Artificial Intelligence & Data Science</option>
+                        <option value="Artificial Intelligence & Machine Learning">Artificial Intelligence & Machine Learning</option>
+                        <option value="Biotechnology">Biotechnology</option>
+                        <option value="Civil Engineering">Civil Engineering</option>
+                        <option value="Computer & Communication Engineering">Computer & Communication Engineering</option>
+                        <option value="Computer Science & Engineering">Computer Science & Engineering</option>
+                        <option value="Computer Science (Full Stack Development)">Computer Science (Full Stack Development)</option>
+                        <option value="Computer Science & Engineering (Cyber Security)">Computer Science & Engineering (Cyber Security)</option>
+                        <option value="Electrical & Electronics Engineering">Electrical & Electronics Engineering</option>
+                        <option value="Electronics & Communication Engineering">Electronics & Communication Engineering</option>
+                        <option value="Electronics Engineering (VLSI Design & Technology)">Electronics Engineering (VLSI Design & Technology)</option>
+                        <option value="Electronics & Communication (ACT)">Electronics & Communication (ACT)</option>
+                        <option value="Information Science & Engineering">Information Science & Engineering</option>
+                        <option value="Mechanical Engineering">Mechanical Engineering</option>
+                        <option value="Robotics & Artificial Intelligence">Robotics & Artificial Intelligence</option>
+                        <option value="Mathematics">Mathematics</option>
+                        <option value="Chemistry">Chemistry</option>
+                        <option value="Physics">Physics</option>
+                    </select>
+                </div>
+                <br>
+                <div class="first">Faculty ID : <input type="text" name="faculty_id" id="faculty_id" placeholder="Enter your faculty ID" required></div>
+                <br>
+                <div class="first">Email : <input type="email" name="email" id="email" required></div>
+                <br>
+                <div class="plag">
+                    <p style="font-weight: bold; font-size: 27px;">Plagcheck</p>
+                    Number : <input style="width: 40px; height: 20px;" type="number" name="fileCount" id="num" min="0" max="3" onchange="generateFileInputs()" oninput="validateNumberInput(event)" required>
+                    <br>
+                    <div id="fileInputsContainer"></div>
+                </div>
+                <br>
+                <div class="submit-container">
+                    <input type="submit" value="Submit" class="submit-button">
+                </div>
+            </form>
+        </div>
+    </div>
+    <footer>
+        <p>Copyright &copy; 2024</p>
+        NMAM Institute Of Technology, Nitte
+    </footer>
+</body>
+</html>
