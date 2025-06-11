@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Upload Document</title>
+    <link rel="stylesheet" href="style.css">
+    <script>
+        function returnBack() {
+            window.location.href = "admin.html";
+        }
+    </script>
+</head>
+<body>
+    <div class="main-content">
+        <div class="nav">
+            <img id="logo" src="nitte.png" alt="Logo">
+            <p id="head">Academic Integrity Portal</p>
+            <button class="logout-button" onclick="returnBack()">Return Home</button>
+        </div>
+        <div class="content">
+            <h2>Add Faculty</h2>
+        </div>
+        <div class="upload-card">
+            <form action="addfaculty.php" method="post">
+                <label for="username">UserName:</label>
+                <input type="text" id="username" name="username" required><br><br>
+                <label for="password">Password</label>
+                <input type="text" id="password" name="password" required><br><br>
+                <label for="department">Department :</label> 
+                <select name="department" id="department" required>
+                    <option value="" disabled selected>Select your department</option>
+                    <option value="Artificial Intelligence & Data Science">Artificial Intelligence & Data Science</option>
+                    <option value="Artificial Intelligence & Machine Learning">Artificial Intelligence & Machine Learning</option>
+                    <option value="Biotechnology">Biotechnology</option>
+                    <option value="Civil Engineering">Civil Engineering</option>
+                    <option value="Computer & Communication Engineering">Computer & Communication Engineering</option>
+                    <option value="Computer Science & Engineering">Computer Science & Engineering</option>
+                    <option value="Computer Science (Full Stack Development)">Computer Science (Full Stack Development)</option>
+                    <option value="Computer Science & Engineering (Cyber Security)">Computer Science & Engineering (Cyber Security)</option>
+                    <option value="Electrical & Electronics Engineering">Electrical & Electronics Engineering</option>
+                    <option value="Electronics & Communication Engineering">Electronics & Communication Engineering</option>
+                    <option value="Electronics Engineering (VLSI Design & Technology)">Electronics Engineering (VLSI Design & Technology)</option>
+                    <option value="Electronics & Communication (ACT)">Electronics & Communication (ACT)</option>
+                    <option value="Information Science & Engineering">Information Science & Engineering</option>
+                    <option value="Mechanical Engineering">Mechanical Engineering</option>
+                    <option value="Robotics & Artificial Intelligence">Robotics & Artificial Intelligence</option>
+                    <option value="Mathematics">Mathematics</option>
+                    <option value="Chemistry">Chemistry</option>
+                    <option value="Physics">Physics</option>
+                </select>
+                <br>
+                <label for="facultyid">Faculty ID :</label>
+                <input type="text" name="faculty_id" id="faculty_id" placeholder="Enter your faculty ID" required>
+                <br>
+                <label for="email">Email : </label>
+                <input type="email" name="email" id="email" required>
+                <br>
+
+                <input type="submit" value="Add Faculty" class="sb">
+            </form>
+        </div>
+    </div>
+    <footer>
+        <p>Copyright &copy; 2024<br> NMAM Institute Of Technology, Nitte</p>
+    </footer>
+</body>
+</html>
