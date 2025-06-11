@@ -75,12 +75,12 @@ This creates a `vendor/` directory with PHPMailer classes.
 
 ### 📁 Database Setup
 
-* Import the provided `.sql` file into your MySQL database.
+* Import the provided `sql.txt` file into your MySQL database.
 * Update database credentials in `config.php`:
 
 ### 📧 Email Settings
 
-* Configure SMTP inside files like `forgot-password.php`:
+* Configure SMTP inside files like `mailer.php`:
 
  
 ---
