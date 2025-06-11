@@ -1,0 +1,65 @@
+CREATE DATABASE plag_check;
+USE plag_check;
+
+CREATE TABLE admin (
+    username VARCHAR(50) PRIMARY KEY,
+    password VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE faculty (
+    username VARCHAR(50) NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    department VARCHAR(100) NOT NULL,
+    faculty_id VARCHAR(50) NOT NULL,
+    email VARCHAR(100) NOT NULL,
+    reset_token_hash VARCHAR(64) DEFAULT NULL,
+    reset_token_expires_at DATETIME DEFAULT NULL,
+    PRIMARY KEY (username)
+);
+
+CREATE TABLE librarian (
+    username VARCHAR(100) NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    email VARCHAR(100) NOT NULL,
+    faculty_id VARCHAR(100) NOT NULL,
+    reset_token_hash VARCHAR(64) DEFAULT NULL,
+    reset_token_expires_at DATETIME DEFAULT NULL,
+    PRIMARY KEY (username)
+);
+
+CREATE TABLE libupload (
+    id INT(11) NOT NULL AUTO_INCREMENT,
+    faculty_username VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL,
+    filename VARCHAR(255) NOT NULL,
+    filesize BIGINT(20) NOT NULL,
+    filetype VARCHAR(100) NOT NULL,
+    filecontent LONGBLOB NOT NULL,
+    upload_time DATETIME NOT NULL,
+    PRIMARY KEY (id),
+    FOREIGN KEY (faculty_username) REFERENCES librarian(username)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE
+);
+
+CREATE TABLE users (
+    id INT(11) NOT NULL AUTO_INCREMENT,
+    username VARCHAR(100) NOT NULL,
+    role VARCHAR(50) DEFAULT NULL,
+    time TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE uploads (
+    upload_id INT(11) NOT NULL AUTO_INCREMENT,
+    username VARCHAR(50) NOT NULL,
+    filename VARCHAR(255) NOT NULL,
+    filesize BIGINT(20) NOT NULL,
+    filetype VARCHAR(100) NOT NULL,
+    filecontent LONGBLOB NOT NULL,
+    upload_time DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (upload_id),
+    FOREIGN KEY (username) REFERENCES faculty(username)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE
+);
