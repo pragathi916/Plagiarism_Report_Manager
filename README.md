@@ -90,5 +90,5 @@ This creates a `vendor/` directory with PHPMailer classes.
 * PHP 7.x or higher
 * MySQL
 * Composer
-* XAMPP / WAMP / MAMP / Localhost Server
+* XAMPP / Localhost Server
 
