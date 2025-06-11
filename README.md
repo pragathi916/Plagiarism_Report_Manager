@@ -1,6 +1,6 @@
 
 
-# 📚 Plagiarism Checking Web Application
+# 📚 Plagiarism Report Managing Web Application
 
 A complete role-based plagiarism checking portal for educational institutions. Built using **HTML, CSS, JavaScript, PHP, and PHPMailer**, this system supports three types of users with distinct roles: **Admin**, **Librarian**, and **Faculty**. Users can upload, process, view, and download reports, with secure email-based password recovery.
 
