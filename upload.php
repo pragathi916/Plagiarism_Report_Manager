@@ -1,4 +1,5 @@
 <?php
+require 'mailer.php'; // to load your PHPMailer config
 require 'config.php';
 date_default_timezone_set('Asia/Kolkata');
 session_start();
@@ -13,7 +14,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
     }
-
 
     // Check if the logged-in username matches the form's username
     if ($_SESSION['username'] !== $username) {
@@ -72,6 +72,39 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if (empty($upload_errors)) {
                 // Commit transaction
                 $conn->commit();
+
+                // Send email notification to all librarians
+                $mail = require 'mailer.php';
+
+                // Fetch librarian emails
+                $librarianEmails = [];
+                $librarianQuery = "SELECT email FROM librarian";
+                $librarianResult = $conn->query($librarianQuery);
+                while ($row = $librarianResult->fetch_assoc()) {
+                    $librarianEmails[] = $row['email'];
+                }
+
+                try {
+                    $mail->setFrom('nmamitcollege@gmail.com', 'Academic Integrity Portal');
+
+                    foreach ($librarianEmails as $libEmail) {
+                        $mail->addBCC($libEmail);
+                    }
+
+                    $mail->Subject = "New Upload by $username";
+                    $mail->isHTML(true);
+                    $mail->Body = "Faculty <strong>$username</strong> (<a href='mailto:$email'>$email</a>) from <strong>$department</strong> has uploaded <strong>$fileCount</strong> document(s) for plagiarism check.";
+
+                    // Attach uploaded files
+                    for ($i = 0; $i < $total_files; $i++) {
+                        $mail->addAttachment($_FILES['file']['tmp_name'][$i], $_FILES['file']['name'][$i]);
+                    }
+
+                    $mail->send();
+                } catch (Exception $e) {
+                    error_log("Mail Error: " . $mail->ErrorInfo);
+                }
+
                 echo "<script>alert('Form submitted successfully!'); window.location.href = 'home.html';</script>";
             } else {
                 // Rollback transaction

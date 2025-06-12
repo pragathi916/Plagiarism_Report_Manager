@@ -1,6 +1,7 @@
 <?php
+require 'mailer.php';
 session_start();
-$conn=require 'config.php'; // Ensure this file correctly sets up $conn
+$conn = require 'config.php';
 date_default_timezone_set('Asia/Kolkata');
 
 // Check if the user is logged in
@@ -60,33 +61,54 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     $filecontent = file_get_contents($_FILES["document"]["tmp_name"][$i]);
                     $upload_time = date("Y-m-d H:i:s");
 
-                    // Insert the file information into the database
                     $stmt = $conn->prepare("INSERT INTO libupload (faculty_username, email, filename, filesize, filetype, filecontent, upload_time) VALUES (?, ?, ?, ?, ?, ?, ?)");
                     $stmt->bind_param("sssssss", $recipient_name, $recipient_email, $filename, $filesize, $filetype, $filecontent, $upload_time);
 
                     if (!$stmt->execute()) {
-                        $upload_errors[] = "Error storing information for file " . $filename . " in the database: " . $stmt->error;
+                        $upload_errors[] = "Error storing file: $filename – " . $stmt->error;
                     }
 
                     $stmt->close();
                 } else {
-                    $upload_errors[] = "Error with file " . $_FILES["document"]["name"][$i];
+                    $upload_errors[] = "Error with file: " . $_FILES["document"]["name"][$i];
                 }
             }
 
             if (empty($upload_errors)) {
-                // Commit transaction
                 $conn->commit();
-                echo "<script>alert('Files uploaded successfully!'); window.location.href = 'libhome.html';</script>";
+
+                // Send email to the faculty
+                $mail = require 'mailer.php';
+
+                try {
+                    $mail->setFrom('nmamitcollege@gmail.com', 'Plagiarism Report System');
+                    $mail->addAddress($recipient_email);
+                    $mail->Subject = "Plagiarism Report Uploaded";
+
+                    $mail->isHTML(true);
+                    $mail->Body = "Dear faculty <strong>$recipient_name</strong>,<br><br>
+                        <strong>$logged_in_user</strong> (librarian) has uploaded a plagiarism check report for the document(s) you had submitted.<br><br>
+                        Please find the attached report(s).<br><br>
+                        Regards,<br>Plagiarism Team";
+
+                    // Attach all uploaded files
+                    for ($i = 0; $i < $total_files; $i++) {
+                        $mail->addAttachment($_FILES["document"]["tmp_name"][$i], $_FILES["document"]["name"][$i]);
+                    }
+
+                    $mail->send();
+                } catch (Exception $e) {
+                    error_log("Email sending failed: " . $mail->ErrorInfo);
+                }
+
+                echo "<script>alert('Files uploaded and email sent to faculty.'); window.location.href = 'libhome.html';</script>";
             } else {
-                // Rollback transaction
                 $conn->rollback();
                 foreach ($upload_errors as $error) {
                     echo "<script>alert('$error'); window.history.back();</script>";
                 }
             }
         } catch (Exception $e) {
-            // Rollback transaction on error
             $conn->rollback();
             echo "<script>alert('An error occurred: " . $e->getMessage() . "'); window.history.back();</script>";
         }

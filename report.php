@@ -56,64 +56,6 @@ function checkLoggedIn() {
     <?php endif; ?>
 }
 </script>
-
-    <style>
-        .sb {
-    margin: 10px;
-    padding: 5px 10px; 
-    border: none;
-    background-color: white;
-    color: #39b3e6;
-    border-radius: 50px;
-    cursor: pointer;
-    font-size: 16px;
-    font-weight: bold;
-    text-align: center;
-    width: 89px; /* Adjust width as needed */
-}
-
-        /* Additional styles specific to this page can be added here */
-        .file-table {
-            color: black;
-            margin: 50px;
-            border-collapse: collapse;
-            text-align: center;
-            width: 85%;
-            background-color: white; /* Set white background */
-        }
-        .file-table th, .file-table td {
-            border: 1px solid black; /* Ensure table has borders */
-            padding: 10px;
-        }
-        .file-table th {
-            background-color: #39b3e6;
-            color: black;
-        }
-
-        /* Ensure footer stays at the bottom */
-        html, body {
-            height: 100%;
-            margin: 0;
-            padding: 0;
-            font-family: 'Arial', sans-serif;
-        }
-        .main-content {
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
-        footer {
-            margin-top: auto; /* Push footer to the bottom */
-            text-align: center;
-            background-color: white;
-            color: #39b3e6; /* Blue color for text */
-            padding: 10px 0;
-            width: 100%;
-            font-family: 'Arial', sans-serif;
-            font-weight: bold;
-            border-top: 2px solid #39b3e6;
-        }
-    </style>
     <script>
         function returnBack() {
             window.location.href = "libhome.html";
