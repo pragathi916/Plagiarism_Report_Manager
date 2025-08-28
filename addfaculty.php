@@ -3,7 +3,7 @@ session_start();
 require 'config.php'; 
 
 if (!isset($_SESSION['username'])) {
-    echo "<script>alert('Please login first.'); window.location.href='login.html';</script>";
+    echo "<script>alert('Please login first.'); window.location.href='index.html';</script>";
     exit();
 }
 
@@ -79,3 +79,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $conn->close();
 }
 ?>
+
